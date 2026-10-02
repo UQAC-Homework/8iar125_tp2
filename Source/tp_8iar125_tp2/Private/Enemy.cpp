@@ -6,3 +6,8 @@ AEnemy::AEnemy()
 	
 	this->RootComponent = this->CreateDefaultSubobject<USceneComponent>("RootComponent");
 }
+
+TObjectPtr<UBehaviorTree> AEnemy::GetBehaviorTree()
+{
+	return this->BehaviorTree;
+}
