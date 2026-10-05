@@ -9,7 +9,7 @@ void AHero::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	const auto Forward = this->GetActorRightVector();
+	const auto Forward = this->GetActorForwardVector();
 
 	this->AddMovementInput(Forward);
 }
