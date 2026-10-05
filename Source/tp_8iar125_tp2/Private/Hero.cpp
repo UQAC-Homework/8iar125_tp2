@@ -1,6 +1,10 @@
 #include "tp_8iar125_tp2/Public/Hero.h"
 #include "MovementDirection.cpp"
 
+void AHero::OnDirectionChanged_Implementation(const EMovementDirection NewDirection)
+{
+}
+
 AHero::AHero()
 {
 	this->PrimaryActorTick.bCanEverTick = true;
@@ -10,6 +14,8 @@ AHero::AHero()
 void AHero::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	this->OnDirectionChanged(this->Direction);
 
 	const FVector DirectionVector = GetWorldNormalVector(this->Direction);
 

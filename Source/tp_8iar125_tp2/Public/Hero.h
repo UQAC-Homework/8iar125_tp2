@@ -15,6 +15,11 @@ class TP_8IAR125_TP2_API AHero : public APaperCharacter
 	UPROPERTY(EditAnywhere)
 	EMovementDirection Direction;
 
+protected:
+	/// Called when the direction of the character changes
+	UFUNCTION(BlueprintNativeEvent)
+	void OnDirectionChanged(const EMovementDirection NewDirection);
+
 public:
 	AHero();
 
