@@ -8,7 +8,7 @@ void AHero::OnDirectionChanged_Implementation(const EMovementDirection NewDirect
 AHero::AHero()
 {
 	this->PrimaryActorTick.bCanEverTick = true;
-	this->Direction = EMovementDirection::Left;
+	this->Direction = EMovementDirection::None;
 }
 
 void AHero::Tick(const float DeltaTime)
