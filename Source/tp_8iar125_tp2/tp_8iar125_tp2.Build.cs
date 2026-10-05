@@ -15,6 +15,7 @@ public class tp_8iar125_tp2 : ModuleRules
 			"InputCore",
 			"EnhancedInput",
 			"AIModule",
+			"Paper2D",
 		]);
 
 		PrivateDependencyModuleNames.AddRange([
