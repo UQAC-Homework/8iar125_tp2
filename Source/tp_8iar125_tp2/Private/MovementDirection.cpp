@@ -1,7 +1,6 @@
 #include "MovementDirection.h"
 
-/// Gets the normal vector of the given direction
-static FVector GetWorldNormalVector(const EMovementDirection MovementDirection)
+FVector GetWorldNormalVector(const EMovementDirection MovementDirection)
 {
 	switch (MovementDirection)
 	{

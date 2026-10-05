@@ -1,5 +1,5 @@
 #include "tp_8iar125_tp2/Public/Hero.h"
-#include "MovementDirection.cpp"
+#include "MovementDirection.h"
 
 void AHero::OnDirectionChanged_Implementation(const EMovementDirection NewDirection)
 {

@@ -13,3 +13,6 @@ enum class EMovementDirection : uint8
 	Up,
 	Down,
 };
+
+/// Gets the normal vector of the given direction
+static FVector GetWorldNormalVector(const EMovementDirection MovementDirection);
