@@ -20,13 +20,13 @@ static FVector GetWorldNormalVector(const EMovementDirection MovementDirection)
 	switch (MovementDirection)
 	{
 	case EMovementDirection::Left:
-		return FVector::BackwardVector;
+		return FVector::RightVector;
 	case EMovementDirection::Right:
-		return FVector::ForwardVector;
+		return FVector::LeftVector;
 	case EMovementDirection::Up:
-		return FVector::UpVector;
+		return FVector::BackwardVector;
 	case EMovementDirection::Down:
-		return FVector::DownVector;
+		return FVector::ForwardVector;
 	default:
 		return FVector::ZeroVector;
 	}
