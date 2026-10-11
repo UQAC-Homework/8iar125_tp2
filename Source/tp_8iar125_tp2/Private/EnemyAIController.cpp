@@ -43,7 +43,7 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 		return;
 	}
 
-	this->BehaviorTreeComponent->StartTree(*BehaviorTree);
+	this->RunBehaviorTree(BehaviorTree);
 }
 
 AEnemyAIController::AEnemyAIController()

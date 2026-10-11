@@ -1,12 +1,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PaperCharacter.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "GameFramework/Pawn.h"
 #include "Enemy.generated.h"
 
 UCLASS()
-class TP_8IAR125_TP2_API AEnemy : public APawn
+class TP_8IAR125_TP2_API AEnemy : public APaperCharacter
 {
 	GENERATED_BODY()
 
