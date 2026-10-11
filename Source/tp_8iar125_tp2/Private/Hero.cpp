@@ -8,16 +8,21 @@ void AHero::OnDirectionChanged_Implementation(const EMovementDirection NewDirect
 {
 }
 
-void AHero::Move(const FInputActionValue& Value)
+void AHero::SetDirection(const EMovementDirection NewDirection)
 {
-	const auto Input = Value.Get<FVector2D>();
-	const auto NewDirection = GetDirectionFromInput(Input);
-
 	if (this->Direction == NewDirection)
 		return;
 
 	this->Direction = NewDirection;
 	OnDirectionChanged(this->Direction);
+}
+
+void AHero::Move(const FInputActionValue& Value)
+{
+	const auto Input = Value.Get<FVector2D>();
+	const auto NewDirection = GetDirectionFromInput(Input);
+
+	this->SetDirection(NewDirection);
 }
 
 AHero::AHero()
@@ -72,4 +77,9 @@ void AHero::Tick(const float DeltaTime)
 		return;
 
 	this->AddMovementInput(DirectionVector);
+	
+	if (this->GetVelocity().IsNearlyZero())
+	{
+		this->SetDirection(EMovementDirection::None);
+	}
 }
