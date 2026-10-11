@@ -3,6 +3,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "MovementDirection.h"
+#include "UMovementLibrary.h"
 
 void AHero::OnDirectionChanged_Implementation(const EMovementDirection NewDirection)
 {
@@ -20,7 +21,7 @@ void AHero::SetDirection(const EMovementDirection NewDirection)
 void AHero::Move(const FInputActionValue& Value)
 {
 	const auto Input = Value.Get<FVector2D>();
-	const auto NewDirection = GetDirectionFromInput(Input);
+	const auto NewDirection = UMovementLibrary::GetDirectionFromInput(Input);
 
 	this->SetDirection(NewDirection);
 }
