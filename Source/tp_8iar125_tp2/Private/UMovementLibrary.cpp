@@ -26,3 +26,20 @@ EMovementDirection UMovementLibrary::GetDirectionFromInput(const FVector2D& Inpu
 
 	return Direction;
 }
+
+FVector UMovementLibrary::GetWorldNormalVector(const EMovementDirection MovementDirection)
+{
+	switch (MovementDirection)
+	{
+	case EMovementDirection::Left:
+		return FVector::RightVector;
+	case EMovementDirection::Right:
+		return FVector::LeftVector;
+	case EMovementDirection::Up:
+		return FVector::BackwardVector;
+	case EMovementDirection::Down:
+		return FVector::ForwardVector;
+	default:
+		return FVector::ZeroVector;
+	}
+}

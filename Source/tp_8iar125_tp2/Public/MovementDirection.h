@@ -13,21 +13,3 @@ enum class EMovementDirection : uint8
 	Up,
 	Down,
 };
-
-/// Gets the normal vector of the given direction
-static FVector GetWorldNormalVector(const EMovementDirection MovementDirection)
-{
-	switch (MovementDirection)
-	{
-	case EMovementDirection::Left:
-		return FVector::RightVector;
-	case EMovementDirection::Right:
-		return FVector::LeftVector;
-	case EMovementDirection::Up:
-		return FVector::BackwardVector;
-	case EMovementDirection::Down:
-		return FVector::ForwardVector;
-	default:
-		return FVector::ZeroVector;
-	}
-}

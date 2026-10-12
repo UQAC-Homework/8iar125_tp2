@@ -72,7 +72,7 @@ void AHero::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	const FVector DirectionVector = GetWorldNormalVector(this->Direction);
+	const FVector DirectionVector = UMovementLibrary::GetWorldNormalVector(this->Direction);
 
 	if (DirectionVector.IsNearlyZero())
 		return;
