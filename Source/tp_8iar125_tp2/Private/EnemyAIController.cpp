@@ -1,6 +1,7 @@
 #include "EnemyAIController.h"
 
 #include "Enemy.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 void AEnemyAIController::OnPossess(APawn* InPawn)
 {
@@ -44,6 +45,31 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 	}
 
 	this->RunBehaviorTree(BehaviorTree);
+
+	const auto Blackboard = this->GetBlackboardComponent();
+
+	if (Blackboard == nullptr)
+	{
+		UE_LOG(
+			LogTemp,
+			Warning,
+			TEXT("Missing a '%s' component."),
+			*UBlackboardComponent::StaticClass()->GetName()
+		);
+		return;
+	}
+	
+	const auto ScatterLocation = Enemy->GetScatterLocation();
+	Blackboard->SetValueAsVector(
+		this->ScatterLocationName,
+		ScatterLocation
+	);
+	
+	const auto Hero = Enemy->GetTargetHero();
+	Blackboard->SetValueAsObject(
+		this->HeroName,
+		Hero
+	);
 }
 
 AEnemyAIController::AEnemyAIController()
