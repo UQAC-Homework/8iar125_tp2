@@ -84,3 +84,8 @@ void AHero::Tick(const float DeltaTime)
 		this->SetDirection(EMovementDirection::None);
 	}
 }
+
+EMovementDirection AHero::GetMovementDirection() const
+{
+	return this->Direction;
+}

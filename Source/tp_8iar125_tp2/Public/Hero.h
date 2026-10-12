@@ -40,4 +40,8 @@ public:
 	virtual void BeginPlay() override;
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 	virtual void Tick(float DeltaTime) override;
+
+	/// Gets the current movement direction
+	UFUNCTION(BlueprintCallable)
+	EMovementDirection GetMovementDirection() const;
 };

@@ -28,6 +28,7 @@ public:
 	TObjectPtr<UBehaviorTree> GetBehaviorTree();
 
 	/// Gets the location to use in the scatter state
+	UFUNCTION(BlueprintCallable)
 	FVector GetScatterLocation() const;
 
 	/// Gets the hero to target
