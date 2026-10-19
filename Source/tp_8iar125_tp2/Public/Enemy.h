@@ -23,6 +23,8 @@ class TP_8IAR125_TP2_API AEnemy : public APaperCharacter
 
 public:
 	AEnemy();
+	
+	virtual void BeginPlay() override;
 
 	/// Gets the behavior tree of the enemy
 	TObjectPtr<UBehaviorTree> GetBehaviorTree();
