@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Hero.h"
 #include "PaperCharacter.h"
+#include "PaperSpriteComponent.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "GameFramework/Pawn.h"
 #include "Enemy.generated.h"
@@ -21,9 +22,13 @@ class TP_8IAR125_TP2_API AEnemy : public APaperCharacter
 	UPROPERTY(EditInstanceOnly, Category = "AI")
 	TObjectPtr<AHero> TargetHero;
 
+protected:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	TObjectPtr<UPaperSpriteComponent> FaceSprite;
+
 public:
 	AEnemy();
-	
+
 	virtual void BeginPlay() override;
 
 	/// Gets the behavior tree of the enemy
@@ -39,4 +44,7 @@ public:
 	/// Gets the location to use in the chase state
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	FVector GetChaseLocation(const AHero* Hero);
+
+	/// Activates the frightened mode
+	void SetFrightened(bool IsActive);
 };

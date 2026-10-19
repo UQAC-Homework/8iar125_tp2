@@ -1,6 +1,6 @@
-#include "EnemyAIController.h"
+#include "Enemy/EnemyAIController.h"
 
-#include "Enemy.h"
+#include "Enemy/Enemy.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
 void AEnemyAIController::OnPossess(APawn* InPawn)

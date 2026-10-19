@@ -1,22 +1,27 @@
-#include "tp_8iar125_tp2/Public/Enemy.h"
+#include "Enemy/Enemy.h"
 
-#include "EnemySubsystem.h"
+#include "Enemy/EnemySubsystem.h"
+#include "PaperSpriteComponent.h"
+#include "Components/CapsuleComponent.h"
 
 AEnemy::AEnemy()
 {
 	this->PrimaryActorTick.bCanEverTick = true;
+
+	this->FaceSprite = this->CreateDefaultSubobject<UPaperSpriteComponent>("Face");
+	this->FaceSprite->SetupAttachment(this->GetCapsuleComponent());
 }
 
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	const auto GameInstance = this->GetGameInstance();
-	
-	if (GameInstance != nullptr)
+
+	const auto World = this->GetWorld();
+
+	if (World != nullptr)
 	{
-		const auto Subsystem = GameInstance->GetSubsystem<UEnemySubsystem>();
-		
+		const auto Subsystem = World->GetSubsystem<UEnemySubsystem>();
+
 		if (Subsystem != nullptr)
 			Subsystem->RegisterEnemy(this);
 	}
@@ -35,6 +40,12 @@ FVector AEnemy::GetScatterLocation() const
 TObjectPtr<AHero> AEnemy::GetTargetHero() const
 {
 	return this->TargetHero;
+}
+
+void AEnemy::SetFrightened(bool IsActive)
+{
+	// Set Body
+	// Set Face
 }
 
 FVector AEnemy::GetChaseLocation_Implementation(const AHero* Hero)
