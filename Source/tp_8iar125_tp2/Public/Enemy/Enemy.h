@@ -4,7 +4,6 @@
 #include "EnemyState.h"
 #include "Hero.h"
 #include "PaperCharacter.h"
-#include "PaperSpriteComponent.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "GameFramework/Pawn.h"
 #include "Enemy.generated.h"
@@ -28,6 +27,7 @@ class TP_8IAR125_TP2_API AEnemy : public APaperCharacter
 	TObjectPtr<AHero> TargetHero;
 
 	/// Sets the current state of the enemy to the given state
+	UFUNCTION(BlueprintCallable)
 	void SetState(EEnemyState NewState);
 
 protected:

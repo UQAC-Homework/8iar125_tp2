@@ -1,5 +1,6 @@
 #include "Enemy/Enemy.h"
 
+#include "PacManGameMode.h"
 #include "Enemy/EnemySubsystem.h"
 #include "Enemy/EnemyAIController.h"
 
@@ -61,14 +62,25 @@ void AEnemy::NotifyActorBeginOverlap(AActor* Other)
 {
 	Super::NotifyActorBeginOverlap(Other);
 
-	// If no hero, skip
+	UE_LOGF(LogTemp, Log, "COLLISION WITH '%ls'", *Other->GetClass()->GetName());
 	if (Cast<AHero>(Other) == nullptr)
+		return;
+
+	const auto World = this->GetWorld();
+
+	if (World == nullptr)
+		return;
+
+	const auto GameMode = Cast<APacManGameMode>(World->GetAuthGameMode());
+
+	if (GameMode == nullptr)
 		return;
 
 	switch (State)
 	{
 	case EEnemyState::Frightened:
 		SetState(EEnemyState::Eaten);
+		GameMode->EatEnemy();
 		break;
 	case EEnemyState::Eaten:
 		// Don't interact with hero

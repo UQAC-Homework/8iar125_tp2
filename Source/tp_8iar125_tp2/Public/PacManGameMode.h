@@ -16,4 +16,7 @@ public:
 	/// Called when a power pellet is collected
 	UFUNCTION(BlueprintCallable)
 	void CollectPowerPellet() const;
+
+	/// Called when an enemy is eaten
+	void EatEnemy() const;
 };
