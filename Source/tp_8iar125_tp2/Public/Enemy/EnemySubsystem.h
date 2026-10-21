@@ -16,17 +16,17 @@ class TP_8IAR125_TP2_API UEnemySubsystem : public UTickableWorldSubsystem
 	UPROPERTY(VisibleInstanceOnly)
 	TArray<TWeakObjectPtr<AEnemy>> ActiveEnemies;
 
-	bool IsFrightened;
+	FTimerHandle FrightenedTimer;
 
-	float FrightTimeRemaining;
-	
 	void SetFrightened(bool IsActive);
+
+	/// Deactivates the frighting mode
+	void DeactivateFrightened();
 
 public:
 	UEnemySubsystem();
 	virtual ~UEnemySubsystem() override;
 
-	virtual void Tick(float DeltaTime) override;
 	virtual TStatId GetStatId() const override;
 
 	/// Registers the given enemy as active
@@ -39,7 +39,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	AEnemy* GetEnemy(UClass* Type) const;
 
-	/// Actives the frighting mode
+	/// Activates the frighting mode
 	UFUNCTION(BlueprintCallable)
 	void ActivateFrighting();
 };

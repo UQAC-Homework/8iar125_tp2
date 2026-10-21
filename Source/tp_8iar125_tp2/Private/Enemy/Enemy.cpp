@@ -71,6 +71,7 @@ void AEnemy::NotifyActorBeginOverlap(AActor* Other)
 		SetState(EEnemyState::Eaten);
 		break;
 	case EEnemyState::Eaten:
+		// Don't interact with hero
 		break;
 	default:
 		/* TODO: tell the GameMode the hero died */
