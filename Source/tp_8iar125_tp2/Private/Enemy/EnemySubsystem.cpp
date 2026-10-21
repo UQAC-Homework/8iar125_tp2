@@ -28,6 +28,7 @@ UEnemySubsystem::UEnemySubsystem()
 UEnemySubsystem::~UEnemySubsystem()
 {
 	this->ActiveEnemies.Empty();
+	this->FrightenedTimer.Invalidate();
 }
 
 TStatId UEnemySubsystem::GetStatId() const
@@ -67,7 +68,7 @@ AEnemy* UEnemySubsystem::GetEnemy(UClass* Type) const
 	return nullptr;
 }
 
-void UEnemySubsystem::ActivateFrighting()
+void UEnemySubsystem::ActivateFrighting(const float Duration)
 {
 	const auto World = this->GetWorld();
 
@@ -81,7 +82,7 @@ void UEnemySubsystem::ActivateFrighting()
 				this->FrightenedTimer,
 				this,
 				&UEnemySubsystem::DeactivateFrightened,
-				10,
+				Duration,
 				false
 			);
 		}

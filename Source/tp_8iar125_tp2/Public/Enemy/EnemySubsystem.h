@@ -39,7 +39,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	AEnemy* GetEnemy(UClass* Type) const;
 
-	/// Activates the frighting mode
-	UFUNCTION(BlueprintCallable)
-	void ActivateFrighting();
+	/// Activates the frighting mode for the given duration in seconds
+	void ActivateFrighting(float Duration);
 };

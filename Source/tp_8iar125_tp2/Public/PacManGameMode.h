@@ -11,4 +11,9 @@ UCLASS()
 class TP_8IAR125_TP2_API APacManGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
+
+public:
+	/// Called when a power pellet is collected
+	UFUNCTION(BlueprintCallable)
+	void CollectPowerPellet() const;
 };
