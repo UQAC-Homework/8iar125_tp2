@@ -5,11 +5,17 @@ void UEnemySubsystem::SetFrightened(const bool IsActive)
 	if (this->IsFrightened == IsActive && !IsActive)
 		return;
 
-	this->FrightTimeRemaining = 10;
 	this->IsFrightened = IsActive;
 
 	for (auto ActiveEnemy : this->ActiveEnemies)
-		ActiveEnemy->SetFrightened(IsActive);
+	{
+		const auto Enemy = ActiveEnemy.Get();
+
+		if (Enemy == nullptr)
+			continue;
+
+		Enemy->SetFrightened(IsActive);
+	}
 }
 
 UEnemySubsystem::UEnemySubsystem()
@@ -37,7 +43,7 @@ void UEnemySubsystem::Tick(const float DeltaTime)
 
 TStatId UEnemySubsystem::GetStatId() const
 {
-	RETURN_QUICK_DECLARE_CYCLE_STAT(UMySubsystem, STATGROUP_Tickables);
+	RETURN_QUICK_DECLARE_CYCLE_STAT(UEnemySubsystem, STATGROUP_Tickables);
 }
 
 void UEnemySubsystem::RegisterEnemy(AEnemy* Enemy)
@@ -60,8 +66,13 @@ AEnemy* UEnemySubsystem::GetEnemy(UClass* Type) const
 {
 	for (const auto ActiveEnemy : this->ActiveEnemies)
 	{
-		if (ActiveEnemy->IsA(Type))
-			return ActiveEnemy.Get();
+		const auto Enemy = ActiveEnemy.Get();
+
+		if (Enemy == nullptr)
+			continue;
+
+		if (Enemy->IsA(Type))
+			return Enemy;
 	}
 
 	return nullptr;
@@ -69,5 +80,6 @@ AEnemy* UEnemySubsystem::GetEnemy(UClass* Type) const
 
 void UEnemySubsystem::ActivateFrighting()
 {
+	this->FrightTimeRemaining = 10;
 	this->SetFrightened(true);
 }

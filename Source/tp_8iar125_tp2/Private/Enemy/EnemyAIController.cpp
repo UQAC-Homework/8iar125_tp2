@@ -58,18 +58,20 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 		);
 		return;
 	}
-	
+
 	const auto ScatterLocation = Enemy->GetScatterLocation();
 	Blackboard->SetValueAsVector(
 		this->ScatterLocationName,
 		ScatterLocation
 	);
-	
+
 	const auto Hero = Enemy->GetTargetHero();
 	Blackboard->SetValueAsObject(
 		this->HeroName,
 		Hero
 	);
+
+	this->SetState(Enemy->GetState());
 }
 
 AEnemyAIController::AEnemyAIController()
@@ -77,4 +79,17 @@ AEnemyAIController::AEnemyAIController()
 	this->PrimaryActorTick.bCanEverTick = true;
 
 	this->BehaviorTreeComponent = this->CreateDefaultSubobject<UBehaviorTreeComponent>("BehaviorTree");
+}
+
+void AEnemyAIController::SetState(EEnemyState NewState)
+{
+	const auto Blackboard = this->GetBlackboardComponent();
+
+	if (Blackboard == nullptr)
+		return;
+
+	Blackboard->SetValueAsEnum(
+		EnemyStateName,
+		static_cast<uint8>(NewState)
+	);
 }

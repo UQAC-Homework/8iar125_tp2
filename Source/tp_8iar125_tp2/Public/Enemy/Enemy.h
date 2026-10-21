@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "EnemyState.h"
 #include "Hero.h"
 #include "PaperCharacter.h"
 #include "PaperSpriteComponent.h"
@@ -16,20 +17,34 @@ class TP_8IAR125_TP2_API AEnemy : public APaperCharacter
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 	TObjectPtr<UBehaviorTree> BehaviorTree;
 
+	/// Current state of the enemy
+	UPROPERTY(VisibleInstanceOnly, Category = "AI")
+	EEnemyState State;
+
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 	FVector ScatterLocation;
 
 	UPROPERTY(EditInstanceOnly, Category = "AI")
 	TObjectPtr<AHero> TargetHero;
 
+	/// Sets the current state of the enemy to the given state
+	void SetState(EEnemyState NewState);
+
 protected:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	TObjectPtr<UPaperSpriteComponent> FaceSprite;
+	/// Blueprint hook to swap sprites (blue body, eyes only, ...)
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnStateChanged(EEnemyState NewState);
 
 public:
 	AEnemy();
 
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+	virtual void NotifyActorBeginOverlap(AActor* Other) override;
+
+	/// Gets the current state of the enemy
+	UFUNCTION(BlueprintPure)
+	EEnemyState GetState() const;
 
 	/// Gets the behavior tree of the enemy
 	TObjectPtr<UBehaviorTree> GetBehaviorTree();
