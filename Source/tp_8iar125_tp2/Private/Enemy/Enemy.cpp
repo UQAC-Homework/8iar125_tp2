@@ -80,7 +80,6 @@ void AEnemy::NotifyActorBeginOverlap(AActor* Other)
 	{
 	case EEnemyState::Frightened:
 		SetState(EEnemyState::Eaten);
-		GameMode->EatEnemy();
 		break;
 	case EEnemyState::Eaten:
 		// Don't interact with hero

@@ -24,8 +24,3 @@ void APacManGameMode::CollectPowerPellet() const
 
 	EnemySystem->ActivateFrighting(10);
 }
-
-void APacManGameMode::EatEnemy() const
-{
-	// Increase score
-}
