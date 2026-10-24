@@ -44,4 +44,9 @@ public:
 	/// Gets the current movement direction
 	UFUNCTION(BlueprintCallable)
 	EMovementDirection GetMovementDirection() const;
+
+	/**
+	 * Disables this hero
+	 */
+	void Disable();
 };

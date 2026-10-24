@@ -78,7 +78,7 @@ void AHero::Tick(const float DeltaTime)
 		return;
 
 	this->AddMovementInput(DirectionVector);
-	
+
 	if (this->GetVelocity().IsNearlyZero())
 	{
 		this->SetDirection(EMovementDirection::None);
@@ -88,4 +88,15 @@ void AHero::Tick(const float DeltaTime)
 EMovementDirection AHero::GetMovementDirection() const
 {
 	return this->Direction;
+}
+
+void AHero::Disable()
+{
+	const auto Controller = this->GetController<APlayerController>();
+
+	if (Controller == nullptr)
+		return;
+
+	this->DisableInput(Controller);
+	Controller->SetIgnoreMoveInput(true);
 }
