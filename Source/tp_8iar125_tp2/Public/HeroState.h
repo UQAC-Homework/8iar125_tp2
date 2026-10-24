@@ -49,8 +49,7 @@ public:
 	void AddScore(int Amount);
 
 	/**
-	 * Kills the hero
+	 * Removes a life from the current life count
 	 */
-	UFUNCTION(BlueprintCallable)
-	void Kill();
+	void RemoveLife();
 };

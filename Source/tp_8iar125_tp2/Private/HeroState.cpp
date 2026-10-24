@@ -20,7 +20,7 @@ void AHeroState::AddScore(const int Amount)
 	this->OnScoreChanged.Broadcast(Score);
 }
 
-void AHeroState::Kill()
+void AHeroState::RemoveLife()
 {
 	auto CurrentLives = this->Lives;
 
