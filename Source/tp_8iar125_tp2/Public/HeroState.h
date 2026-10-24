@@ -23,24 +23,24 @@ class TP_8IAR125_TP2_API AHeroState : public APlayerState
 	int Lives;
 
 	/**
-	 * Called when the life count has changed
-	 */
-	UPROPERTY(BlueprintAssignable)
-	FOnLifeCountChanged OnLifeCountChanged;
-
-	/**
-     * Called when the score has changed
-     */
-	UPROPERTY(BlueprintAssignable)
-	FOnScoreChanged OnScoreChanged;
-
-	/**
 	 * Sets the life count to the given amount
 	 */
 	void SetLives(const int NewLives);
 
 public:
 	AHeroState();
+
+	/**
+	 * Called when the life count has changed
+	 */
+	UPROPERTY(BlueprintAssignable)
+	FOnLifeCountChanged OnLifeCountChanged;
+
+	/**
+	 * Called when the score has changed
+	 */
+	UPROPERTY(BlueprintAssignable)
+	FOnScoreChanged OnScoreChanged;
 
 	/**
 	 * Adds the given amount to the current score
