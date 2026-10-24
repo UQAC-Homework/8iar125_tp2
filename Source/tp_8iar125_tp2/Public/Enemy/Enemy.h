@@ -62,4 +62,9 @@ public:
 
 	/// Activates the frightened mode
 	void SetFrightened(bool IsActive);
+
+	/**
+	 * Disables this enemy
+	 */
+	void Disable();
 };

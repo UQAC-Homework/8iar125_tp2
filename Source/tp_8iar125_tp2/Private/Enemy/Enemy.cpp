@@ -3,6 +3,7 @@
 #include "PacManGameMode.h"
 #include "Enemy/EnemySubsystem.h"
 #include "Enemy/EnemyAIController.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 void AEnemy::SetState(const EEnemyState NewState)
 {
@@ -119,6 +120,26 @@ void AEnemy::SetFrightened(const bool IsActive)
 		SetState(EEnemyState::Frightened);
 	else if (State == EEnemyState::Frightened)
 		SetState(EEnemyState::Chase);
+}
+
+void AEnemy::Disable()
+{
+	const auto Controller = this->GetController<AEnemyAIController>();
+
+	if (Controller != nullptr)
+	{
+		Controller->StopMovement();
+	}
+
+	const auto Movement = this->GetCharacterMovement();
+
+	if (Movement != nullptr)
+	{
+		Movement->StopMovementImmediately();
+		Movement->DisableMovement();
+	}
+
+	this->SetActorTickEnabled(false);
 }
 
 FVector AEnemy::GetChaseLocation_Implementation(const AHero* Hero)
