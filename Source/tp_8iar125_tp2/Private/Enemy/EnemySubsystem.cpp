@@ -90,3 +90,16 @@ void UEnemySubsystem::ActivateFrighting(const float Duration)
 
 	this->SetFrightened(true);
 }
+
+void UEnemySubsystem::DisableAllEnemies()
+{
+	for (const auto ActiveEnemy : this->ActiveEnemies)
+	{
+		const auto Enemy = ActiveEnemy.Get();
+
+		if (Enemy == nullptr)
+			continue;
+
+		Enemy->Disable();
+	}
+}

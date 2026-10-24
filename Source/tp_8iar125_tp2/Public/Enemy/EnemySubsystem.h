@@ -6,7 +6,7 @@
 #include "EnemySubsystem.generated.h"
 
 /**
- * 
+ * System used to manage enemies
  */
 UCLASS()
 class TP_8IAR125_TP2_API UEnemySubsystem : public UTickableWorldSubsystem
@@ -41,4 +41,9 @@ public:
 
 	/// Activates the frighting mode for the given duration in seconds
 	void ActivateFrighting(float Duration);
+
+	/**
+	 * Disables all enemies
+	 */
+	void DisableAllEnemies();
 };
